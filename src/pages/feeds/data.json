@@ -1,0 +1,121 @@
+{
+  "profile": {
+    "avatar": "./images/user-02.svg"
+  },
+  "users": [
+    {
+      "id": "0",
+      "avatar": "./images/user-01.svg",
+      "name": "Josh"
+    },
+    {
+      "id": "1",
+      "avatar": "./images/user-02.svg",
+      "name": "Andrew"
+    },
+    {
+      "id": "2",
+      "avatar": "./images/user-03.svg",
+      "name": "Camille"
+    },
+    {
+      "id": "3",
+      "avatar": "./images/user-04.svg",
+      "name": "Marselle"
+    },
+    {
+      "id": "4",
+      "avatar": "./images/user-01.svg",
+      "name": "Piter"
+    },
+    {
+      "id": "5",
+      "avatar": "./images/user-02.svg",
+      "name": "Can"
+    },
+    {
+      "id": "6",
+      "avatar": "./images/user-03.svg",
+      "name": "Iloveanime"
+    },
+    {
+      "id": "7",
+      "avatar": "./images/user-04.svg",
+      "name": "Diself"
+    },
+    {
+      "id": "8",
+      "avatar": "./images/user-01.svg",
+      "name": "Gartor"
+    },
+    {
+      "id": "9",
+      "avatar": "./images/user-02.svg",
+      "name": "Camilr"
+    }
+  ],
+  "feeds": [
+    {
+      "id": "0",
+      "author": {
+        "avatar": "./images/user-01.svg",
+        "name": "joshua_l"
+      },
+      "content": {
+        "title": "Vue.js",
+        "description": "JavaScript framework for building interactive web applications ⚡",
+        "date": "15 may",
+        "stars": "211k",
+        "forks": 22
+      },
+      "comments": [
+        {
+          "id": "0",
+          "author": "John",
+          "text": "Comment from John"
+        },
+        {
+          "id": "1",
+          "author": "Mike",
+          "text": "Comment from Mike"
+        },
+        {
+          "id": "2",
+          "author": "Sasha",
+          "text": "Comment from Sasha"
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "author": {
+        "avatar": "./images/user-03.svg",
+        "name": "Camille"
+      },
+      "content": {
+        "title": "React.js",
+        "description": "Open source JavaScript library used for designing user interfaces",
+        "date": "15 may",
+        "stars": "156k",
+        "forks": 4
+      },
+      "comments": [
+        {
+          "id": "0",
+          "author": "John",
+          "text": "Comment from John"
+        },
+        {
+          "id": "1",
+          "author": "Mike",
+          "text": "Comment from Mike"
+        },
+        {
+          "id": "2",
+          "author": "Sasha",
+          "text": "Comment from Sasha"
+        }
+      ]
+    }
+  ]
+}
