@@ -1,0 +1,9 @@
+.comment {
+  font-size: 14px;
+  line-height: 1.57;
+  &__author {
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: 700;
+  }
+}

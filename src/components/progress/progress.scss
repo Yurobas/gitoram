@@ -1,0 +1,22 @@
+.progress {
+  position: relative;
+  height: 2px;
+  border-radius: 1px;
+  background-color: rgba(49, 174, 84, 0.3);
+  overflow: hidden;
+  &.active {
+    & .progress__line {
+      width: 100%;
+    }
+  }
+  &__line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    border-radius: 1px;
+    background-color: #31AE54;
+    transition: 5s;
+  }
+}

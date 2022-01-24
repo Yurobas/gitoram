@@ -36,39 +36,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-  .nav__list {
-    display: flex;
-    align-items: center;
-  }
-
-  .nav__item.--home {
-    width: 24px;
-  }
-
-  .nav__item.--profile .nav__link {
-    display: block;
-    width: 53px;
-    height: 53px;
-    margin: 0 19px 0 24px;
-    padding: 6px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    transition: border-color .25s ease, box-shadow .25s ease;
-  }
-
-  .nav__item.--profile:hover .nav__link {
-    border-color: #31AE54;;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav__item.--logout {
-    width: 25px;
-  }
-
-  .nav__item:hover {
-    color: #31AE54;
-  }
-
-</style>
+<style src="./navigation.scss" lang="scss" scoped></style>

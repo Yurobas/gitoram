@@ -1,0 +1,45 @@
+.stats {
+  display: inline-flex;
+  border-radius: 6px;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  overflow: hidden;
+  &__item,
+  &__block {
+    &:not(:last-child) {
+      border-right: 1px solid rgba(27, 31, 35, 0.15);
+    }
+  }
+  &__item {
+    display: inline-flex;
+    &.--stars {
+      & .stats__icon {
+        width: 16px;
+      }
+    }
+    &.--forks {
+      & .stats__icon {
+        width: 12px;
+      }
+    }
+  }
+  &__block {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.28;
+  }
+  &__button {
+    background: #FAFBFC;
+    &:hover {
+      & .stats__icon {
+        color: #31AE54;
+      }
+    }
+  }
+  &__icon {
+    margin-right: 5px;
+    color: #586069;
+    transition: color .25s ease;
+  }
+}

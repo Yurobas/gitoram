@@ -1,0 +1,17 @@
+.toggler {
+  display: flex;
+  align-items: center;
+  &.--active {
+    & .toggler__icon {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+  }
+  &__text {
+    margin-right: 5px;
+    font-size: 14px;
+  }
+  &__icon {
+    width: 10px;
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+}

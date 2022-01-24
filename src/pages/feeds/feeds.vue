@@ -8,8 +8,8 @@
         </template>
         <template #bottom>
           <ul class="users">
-            <li class="users__item" v-for="item in data.users" :key="item.key">
-              <user :avatar="item.avatar" :name="item.name" @onClick="handleClick(item.id)"/>
+            <li class="users__item" v-for="item in items" :key="item.key">
+              <user :avatar="item.owner.avatar_url" :name="item.name" @onClick="handleClick(item.id)"/>
             </li>
           </ul>
         </template>
@@ -44,6 +44,8 @@ import { logo } from '../../components/logo'
 import { user } from '../../components/user'
 import { feed } from '../../components/feed'
 
+import * as api from '../../api'
+
 export default {
   name: 'feeds',
   components: {
@@ -56,45 +58,24 @@ export default {
   },
   data () {
     return {
-      data
+      data,
+      items: []
     }
   },
   methods: {
     handleClick (id) {
       console.log(id)
     }
+  },
+  async created () {
+    try {
+      const { data } = await api.trandings.getTrendings()
+      this.items = data.items
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>
 
-<style>
-  .users:hover .user__pic {
-    border-color: transparent;
-  }
-</style>
-
-<style scoped>
-
-  .users {
-    display: flex;
-  }
-
-  .users__item:not(:last-of-type) {
-    margin-right: 30px;
-  }
-
-  .feeds__content {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 30px 0 60px;
-  }
-
-  .feeds__item + .feeds__item {
-    margin-top: 25px;
-  }
-
-  .feed__stats {
-    margin-top: 32px;
-  }
-
-</style>
+<style src="./feeds.scss" lang="scss"></style>

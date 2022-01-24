@@ -21,17 +21,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-  .comment {
-    font-size: 14px;
-    line-height: 1.57;
-  }
-
-  .comment__author {
-    display: inline-block;
-    margin-right: 5px;
-    font-weight: 700;
-  }
-
-</style>
+<style src="./comment.scss" lang="scss" scoped></style>

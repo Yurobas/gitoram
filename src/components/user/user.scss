@@ -1,0 +1,25 @@
+.user {
+  &.--inline {
+    display: flex;
+    align-items: center;
+    & .user__pic {
+      margin-right: 14px;
+      & .avatar {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+    & .user__name {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+  &__name {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1;
+  }
+}

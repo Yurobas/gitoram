@@ -15,8 +15,4 @@ export default {
 }
 </script>
 
-<style scoped>
-  .logo {
-    width: 174px;
-  }
-</style>
+<style src="./logo.scss" lang="scss" scoped></style>

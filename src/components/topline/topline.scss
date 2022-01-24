@@ -1,0 +1,13 @@
+.topline {
+  padding: 44px 0 32px;
+  background-color: #fafafa;
+  box-shadow: 0px 0.33px 0px rgba(60, 60, 67, 0.29);
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & + & {
+      margin-top: 28px;
+    }
+  }
+}

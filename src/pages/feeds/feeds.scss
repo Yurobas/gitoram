@@ -1,0 +1,29 @@
+.users {
+  display: flex;
+  &:hover {
+    & .avatar {
+      border-color: transparent;
+    }
+  }
+  &__item {
+    &:not(:last-of-type) {
+      margin-right: 30px;
+    }
+  }
+}
+
+.feeds {
+  &__content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 30px 0 60px;
+  }
+  &__item {
+    & + & {
+      margin-top: 25px;
+    }
+  }
+  &__stats {
+    margin-top: 32px;
+  }
+}

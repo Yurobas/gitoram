@@ -22,6 +22,7 @@ export default {
       isOpened: false
     }
   },
+  emits: ['onToggle'],
   methods: {
     toggle () {
       this.isOpened = !this.isOpened
@@ -31,25 +32,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-  .toggler {
-    display: flex;
-    align-items: center;
-  }
-
-  .toggler.--active .toggler__icon {
-    transform: rotate3d(0, 0, 1, 0deg);
-  }
-
-  .toggler__text {
-    margin-right: 5px;
-    font-size: 14px;
-  }
-
-  .toggler__icon {
-    width: 10px;
-    transform: rotate3d(0, 0, 1, 180deg);
-  }
-
-</style>
+<style src="./toggler.scss" lang="scss" scoped></style>
