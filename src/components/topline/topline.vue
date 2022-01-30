@@ -1,5 +1,5 @@
 <template>
-  <header class="topline">
+  <header class="topline" :class="{dark : isDark}">
     <div class="container">
       <div class="topline__row">
         <slot name="top"/>
@@ -13,8 +13,11 @@
 
 <script>
 export default {
-  name: 'topline'
+  name: 'topline',
+  props: {
+    isDark: Boolean
+  }
 }
 </script>
 
-<style src="./topline.scss" lang="scss" scoped></style>
+<style src="./topline.scss" lang="scss"></style>

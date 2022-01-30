@@ -1,0 +1,10 @@
+.stories {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-black);
+  &__content {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+  }
+}

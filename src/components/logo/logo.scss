@@ -1,3 +1,9 @@
 .logo {
   width: 174px;
 }
+
+.dark {
+  & .logo {
+    color: var(--white);
+  }
+}

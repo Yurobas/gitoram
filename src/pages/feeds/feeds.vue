@@ -4,12 +4,16 @@
       <topline>
         <template #top>
           <logo/>
-          <navigation :profile="data.profile"/>
+          <!-- <navigation :profile=""/> -->
         </template>
         <template #bottom>
           <ul class="users">
-            <li class="users__item" v-for="item in items" :key="item.key">
-              <user :avatar="item.owner.avatar_url" :name="item.name" @onClick="handleClick(item.id)"/>
+            <li class="users__item" v-for="{id, owner, name} in items" :key="id">
+              <user 
+                :avatar="owner.avatar_url" 
+                :name="name" 
+                @onClick="$router.push({ name: 'stories', params: { initialSlide: id } })"
+              />
             </li>
           </ul>
         </template>
@@ -18,8 +22,8 @@
     <div class="feeds__content">
       <div class="container">
         <ul class="feeds__list">
-          <li class="feeds__item" v-for="item in data.feeds" :key="item.key">
-            <feed :data="item">
+          <li class="feeds__item">
+            <!-- <feed :data="item">
               <template #content v-if="item.content">
                 <h2 class="feed__title">{{ item.content.title }}</h2>
                 <p class="feed__description">{{ item.content.description }}</p>
@@ -27,7 +31,7 @@
                   <stats :stars="item.content.stars" :forks="item.content.forks"/>
                 </div>
               </template>
-            </feed>
+            </feed> -->
           </li>
         </ul>
       </div>
@@ -36,35 +40,28 @@
 </template>
 
 <script>
-import data from './data.json'
-import { navigation } from '../../components/navigation'
+// import { navigation } from '../../components/navigation'
 import { topline } from '../../components/topline'
-import { stats } from '../../components/stats'
+// import { stats } from '../../components/stats'
 import { logo } from '../../components/logo'
 import { user } from '../../components/user'
-import { feed } from '../../components/feed'
+// import { feed } from '../../components/feed'
 
 import * as api from '../../api'
 
 export default {
   name: 'feeds',
   components: {
-    navigation,
+    // navigation,
     topline,
-    stats,
+    // stats,
     logo,
-    user,
-    feed
+    user
+    // feed
   },
   data () {
     return {
-      data,
       items: []
-    }
-  },
-  methods: {
-    handleClick (id) {
-      console.log(id)
     }
   },
   async created () {

@@ -15,6 +15,7 @@ export default {
   components: {
     avatar
   },
+  emits: ['onClick'],
   props: {
     avatar: {
       type: String,

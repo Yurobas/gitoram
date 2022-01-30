@@ -7,22 +7,16 @@
 <script>
 export default {
   name: 'progress',
-  data () {
-    return {
-      active: false
-    }
+  props: {
+    active: Boolean
   },
-  emits: ['onFinish'],
+  emits: ['onProgressFinish'],
   methods: {
     emitOnFinish () {
-      this.$emit('onFinish')
+      this.$emit('onProgressFinish')
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      this.active = true
-    })
-
     this.$refs.indicator.addEventListener('transitionend', this.emitOnFinish)
   },
   beforeUnmount () {

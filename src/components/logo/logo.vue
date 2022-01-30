@@ -1,5 +1,5 @@
 <template>
-  <div class="logo">
+  <div class="logo" @click="$router.push('/')">
     <icon name="logo"/>
   </div>
 </template>

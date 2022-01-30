@@ -1,3 +1,36 @@
+:root {
+  --bg-black: #101010;
+  --bg-placeholder: #DEDEDE;
+
+  --scrollbar: #AFAFAF;
+
+  --white: #fff;
+  --black: #000;
+  --green: #31AE54;
+
+  --arrow-color: #404040;
+
+  --transition: .25s ease;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+}
+
+/* для Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar);
+  border-radius: 10px;
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -29,7 +62,7 @@ img {
 }
 
 svg {
-  transition: color .25s ease, fill .25s ease, stroke .25s ease;
+  transition: color var(--transition), fill var(--transition), stroke var(--transition);
 }
 
 ul {
@@ -60,7 +93,21 @@ button {
   overflow: hidden;
 }
 
+#app,
+.page {
+  min-height: inherit;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
 }
