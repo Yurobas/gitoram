@@ -1,14 +1,16 @@
 <template>
-  <div :class={active} class="progress">
+  <div :class="{active}" class="progress">
     <div ref="indicator" class="progress__line"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'progress',
+  name: 'xProgress',
   props: {
-    active: Boolean
+    active: {
+      type: Boolean
+    }
   },
   emits: ['onProgressFinish'],
   methods: {
@@ -25,4 +27,4 @@ export default {
 }
 </script>
 
-<style src="./progress.scss" lang="scss"></style>
+<style src="./xProgress.scss" lang="scss"></style>

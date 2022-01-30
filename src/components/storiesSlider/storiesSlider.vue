@@ -6,7 +6,7 @@
           <storyPostItem 
             :data="getStoryData(trending)"
             :active="slideNdx === ndx"
-            :loading="slideNdx === ndx & loading"
+            :loading="slideNdx === ndx && loading"
             :btnsShown="activeBtns"
             @onPrevSlide="handleSlide(ndx - 1)"
             @onNextSlide="handleSlide(ndx + 1)"
@@ -28,6 +28,7 @@ export default {
     return {
       slideNdx: 0,
       sliderPosition: 0,
+      loading: false,
       btnsShown: true
     }
   },
@@ -41,8 +42,7 @@ export default {
   },
   computed: {
     ...mapState({
-      trendings: state => state.trendings.data,
-      loading: state => state.trendings.loading
+      trendings: state => state.trendings.data
     }),
     activeBtns () {
       if (this.btnsShown === false) return []
@@ -81,6 +81,7 @@ export default {
       slider.style.transform = `translate3d(${this.sliderPosition}px, 0, 0)`
     },
     async loadReadme () {
+      this.loading = true
       this.btnsShown = false
       try {
         await this.fetchReadmeForActiveSlide()
@@ -88,22 +89,23 @@ export default {
         console.error(e)
         throw e
       } finally {
+        this.loading = false
         this.btnsShown = true
       }
     },
     async handleSlide (slideNdx) {
+      if (slideNdx === this.trendings.length) return
       this.moveSlider(slideNdx)
       await this.loadReadme()
     }
   },
   async mounted () {
+    await this.fetchTrendings()
+    await this.loadReadme()
     if (this.initialSlide) {
       const ndx = this.trendings.findIndex(item => item.id === this.initialSlide)
       await this.handleSlide(ndx)
     }
-
-    await this.fetchTrendings()
-    await this.loadReadme()
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div class="storyPostItem" :class="{active}">
     <div class="storyPostItem__header">
       <div class="storyPostItem__progress">
-        <xProgress :active="{active}" @onProgressFinish="$emit('handleProgressFinish')"/>
+        <xProgress :active="active" @onProgressFinish="$emit('handleProgressFinish')"/>
       </div>
       <div class="storyPostItem__user">
         <user class="--inline" :avatar="data?.useravatar" :name="data?.username" @onClick="handleClick(data?.id)"/>
@@ -42,8 +42,8 @@
 <script>
 import { contentPlaceholder } from '../../components/contentPlaceholder'
 import { user } from '../../components/user'
-import { progress } from '../../components/progress'
-import { button } from '../../components/button'
+import { xProgress } from '../../components/xProgress'
+import { xButton } from '../../components/xButton'
 import { preloader } from '../../components/preloader'
 import { icon } from '../../icons'
 
@@ -51,8 +51,8 @@ export default {
   name: 'storyPostItem',
   components: {
     user,
-    xProgress: progress,
-    xButton: button,
+    xProgress,
+    xButton,
     contentPlaceholder,
     preloader,
     icon

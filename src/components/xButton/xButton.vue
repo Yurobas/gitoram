@@ -11,4 +11,4 @@ export default {
 }
 </script>
 
-<style src="./button.scss" lang="scss"></style>
+<style src="./xButton.scss" lang="scss"></style>
