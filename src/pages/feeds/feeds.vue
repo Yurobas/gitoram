@@ -4,14 +4,18 @@
       <topline>
         <template #top>
           <logo/>
-          <!-- <navigation :profile=""/> -->
+          <navigation :avatar_url="user.avatar_url" @logout="logout"/>
         </template>
         <template #bottom>
           <ul class="users">
-            <li class="users__item" v-for="{id, owner, name} in items" :key="id">
-              <user 
-                :avatar="owner.avatar_url" 
-                :name="name" 
+            <li 
+              class="users__item" 
+              v-for="{id, useravatar, username} in getStoryData(trendings)" 
+              :key="id">
+              <user
+                border
+                :avatar="useravatar" 
+                :name="username"
                 @onClick="$router.push({ name: 'stories', params: { initialSlide: id } })"
               />
             </li>
@@ -22,16 +26,36 @@
     <div class="feeds__content">
       <div class="container">
         <ul class="feeds__list">
-          <li class="feeds__item">
-            <!-- <feed :data="item">
-              <template #content v-if="item.content">
-                <h2 class="feed__title">{{ item.content.title }}</h2>
-                <p class="feed__description">{{ item.content.description }}</p>
+          <li 
+            class="feeds__item"
+            v-for="{
+              id,
+              name,
+              owner,
+              description,
+              stargazers_count,
+              forks,
+              issues,
+              created_at,
+            } in starred"
+            :key="id"
+          >
+            <feed
+              :userpic="owner.avatar_url"
+              :username="owner.login"
+              :issues="issues.data.content"
+              :date="new Date(created_at)"
+              :loading="issues.loading"
+              @loadContent="loadIssues({ id, owner: owner.login, repo: name })"
+            >
+              <template #content>
+                <h2 class="feed__title">{{ name }}</h2>
+                <p class="feed__description">{{ description }}</p>
                 <div class="feed__stats">
-                  <stats :stars="item.content.stars" :forks="item.content.forks"/>
+                  <stats :stars="stargazers_count" :forks="forks"/>
                 </div>
               </template>
-            </feed> -->
+            </feed>
           </li>
         </ul>
       </div>
@@ -40,37 +64,63 @@
 </template>
 
 <script>
-// import { navigation } from '../../components/navigation'
+import { mapState, mapActions } from 'vuex'
+import { navigation } from '../../components/navigation'
 import { topline } from '../../components/topline'
-// import { stats } from '../../components/stats'
+import { stats } from '../../components/stats'
 import { logo } from '../../components/logo'
 import { user } from '../../components/user'
-// import { feed } from '../../components/feed'
-
-import * as api from '../../api'
+import { feed } from '../../components/feed'
 
 export default {
   name: 'feeds',
   components: {
-    // navigation,
+    navigation,
     topline,
-    // stats,
+    stats,
     logo,
-    user
-    // feed
+    user,
+    feed
   },
   data () {
     return {
       items: []
     }
   },
-  async created () {
-    try {
-      const { data } = await api.trandings.getTrendings()
-      this.items = data.items
-    } catch (error) {
-      console.log(error)
+  computed: {
+    ...mapState({
+      user: state => state.user.data,
+      trendings: state => state.trendings.data,
+      starred: state => state.starred.data
+    })
+  },
+  methods: {
+    ...mapActions({
+      logout: 'auth/logout',
+      fetchUser: 'user/fetchUser',
+      fetchTrendings: 'trendings/fetchTrendings',
+      fetchStarred: 'starred/fetchStarred',
+      fetchIssues: 'starred/fetchIssues'
+    }),
+    loadIssues ({ id, owner, repo }) {
+      this.fetchIssues({ id, owner, repo })
+    },
+    getStoryData (array) {
+      if (!array.length) return
+      const result = array.map(obj => {
+        return {
+          id: obj.id,
+          useravatar: obj.owner?.avatar_url,
+          username: obj.owner?.login
+        }
+      })
+      return result
     }
+  },
+  async created () {
+    await this.fetchUser()
+    await this.fetchTrendings()
+    await this.fetchStarred()
   }
 }
 </script>

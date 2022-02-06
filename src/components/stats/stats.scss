@@ -33,7 +33,7 @@
     background: #FAFBFC;
     &:hover {
       & .stats__icon {
-        color: #31AE54;
+        color: var(--green);
       }
     }
   }

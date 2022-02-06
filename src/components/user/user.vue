@@ -1,7 +1,7 @@
 <template>
   <button class="user" @click="$emit('onClick')">
     <div class="user__pic">
-      <avatar :image="avatar"/>
+      <avatar :size="size" :border="border" :image="avatar"/>
     </div>
     <div class="user__name">{{ name }}</div>
   </button>
@@ -17,6 +17,8 @@ export default {
   },
   emits: ['onClick'],
   props: {
+    size: String,
+    border: Boolean,
     avatar: {
       type: String,
       required: true

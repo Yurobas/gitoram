@@ -1,27 +1,33 @@
 <template>
-  <div class="storyPostItem" :class="{active}">
+  <div class="storyPostItem" :class="[{active}, {loading}]">
     <div class="storyPostItem__header">
       <div class="storyPostItem__progress">
-        <xProgress :active="active" @onProgressFinish="$emit('handleProgressFinish')"/>
+        <xProgress @onProgressFinish="$emit('handleProgressFinish')"/>
       </div>
       <div class="storyPostItem__user">
         <user class="--inline" :avatar="data?.useravatar" :name="data?.username" @onClick="handleClick(data?.id)"/>
       </div>
     </div>
     <div class="storyPostItem__content">
-      <preloader v-if="loading"/>
+      <preloader :size="40" v-if="loading"/>
       <div v-else class="storyPostItem__info">
         <div
           class="storyPostItem__description"
           v-if="data?.content?.length"
           v-html="data.content"
         ></div>
-        <contentPlaceholder v-else :paragraphs="2"/>
+        <contentPlaceholder v-else image :paragraphs="2"/>
       </div>
     </div>
     <div class="storyPostItem__footer">
       <div class="storyPostItem__button">
-        <xButton text="Follow"/>
+        <xButton
+          wide
+          :theme="data.following.status ? 'grey' : ''"
+          :loading="data.following.loading"
+          @click="$emit(data.following.status ? 'onUnfollow' : 'onFollow', data.id)">
+          {{ data.following.status ? 'Unfollow' : 'Follow' }}
+        </xButton>
       </div>
     </div>
     <template v-if="active">
@@ -57,7 +63,7 @@ export default {
     preloader,
     icon
   },
-  emits: ['onPrevSlide', 'onNextSlide', 'handleProgressFinish'],
+  emits: ['onPrevSlide', 'onNextSlide', 'handleProgressFinish', 'onFollow'],
   props: {
     active: Boolean,
     loading: Boolean,

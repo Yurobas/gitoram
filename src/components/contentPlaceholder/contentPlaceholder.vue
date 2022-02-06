@@ -1,6 +1,6 @@
 <template>
   <div class="contentPlaceholder">
-    <div class="contentPlaceholder__image"></div>
+    <div class="contentPlaceholder__image" v-if="image"></div>
     <ul class="contentPlaceholder__list">
       <li class="contentPlaceholder__item" v-for="n of paragraphs" :key="paragraphs[n]">
         <span></span>
@@ -15,6 +15,7 @@
 export default {
   name: 'contentPlaceholder',
   props: {
+    image: Boolean,
     paragraphs: Number
   }
 }

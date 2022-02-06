@@ -1,5 +1,5 @@
 <template>
-  <div class="avatar">
+  <div :class="[size, {border}]" class="avatar">
     <img class="avatar__image" :src=image alt="User Avatar">
   </div>
 </template>
@@ -8,7 +8,9 @@
 export default {
   name: 'avatar',
   props: {
-    image: String
+    image: String,
+    size: String,
+    border: Boolean
   }
 }
 </script>

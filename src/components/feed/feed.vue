@@ -1,7 +1,7 @@
 <template>
   <div class="feed">
     <div class="feed__profile">
-      <user class="--inline" :avatar="data.author.avatar" :name="data.author.name" @onClick="handleClick(data.id)"/>
+      <user class="--inline" size="small" :avatar="userpic" :name="username"/>
     </div>
     <div class="feed__content" v-if="$slots.content">
       <slot name="content"/>
@@ -9,16 +9,20 @@
     <div class="feed__toggler">
       <toggler @onToggle="toggle"/>
     </div>
-    <ul class="feed__comments" v-if="shown">
-      <li class="feed__comment" v-for="item in data.comments" :key="item.id">
-        <comment :author="item.author" :text="item.text"/>
-      </li>
-    </ul>
-    <div class="feed__date">{{ data.date }}</div>
+    <div class="feed__issues" v-if="shown">
+      <contentPlaceholder v-if="loading" :paragraphs="1"/>
+      <ul class="feed__comments">
+        <li class="feed__comment" v-for="item in issues" :key="item.id">
+          <comment :author="item.user.login" :text="item.title"/>
+        </li>
+      </ul>
+    </div>
+    <div class="feed__date">{{ date }}</div>
   </div>
 </template>
 
 <script>
+import { contentPlaceholder } from '../../components/contentPlaceholder'
 import { toggler } from '../../components/toggler'
 import { comment } from '../../components/comment'
 import { user } from '../../components/user'
@@ -26,14 +30,18 @@ import { user } from '../../components/user'
 export default {
   name: 'feed',
   components: {
+    contentPlaceholder,
     toggler,
     comment,
     user
   },
+  emits: ['loadContent'],
   props: {
-    data: {
-      comments: Array
-    }
+    userpic: String,
+    username: String,
+    issues: Array,
+    date: String,
+    loading: Boolean
   },
   data () {
     return {
@@ -41,11 +49,12 @@ export default {
     }
   },
   methods: {
-    handleClick (id) {
-      console.log(id)
+    loadContent (isOpened) {
+      this.shown = isOpened
     },
     toggle (isOpened) {
       this.shown = isOpened
+      this.$emit('loadContent')
     }
   }
 }

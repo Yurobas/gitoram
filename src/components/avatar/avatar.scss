@@ -2,20 +2,28 @@
   width: 92px;
   height: 92px;
   padding: 6px;
+  color: currentColor;
   border-radius: 50%;
-  border: 2px solid #A6328D;
-  transition: border-color .25s ease;
+  border: 2px solid transparent;
+  transition: var(--transition);
   overflow: hidden;
+  &.border {
+    border-color: currentColor;
+  }
+  &.mini {
+    width: 53px;
+    height: 53px;
+  }
   &.small {
-    width: 44px;
-    height: 44px;
+    width: 60px;
+    height: 60px;
   }
   &.medium {
-    width: 72px;
-    height: 72px;
+    width: 88px;
+    height: 88px;
   }
   &:hover {
-    border-color: #A6328D !important;
+    border-color: currentColor !important;
   }
   &__image {
     width: 100%;

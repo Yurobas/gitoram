@@ -7,6 +7,9 @@
   --white: #fff;
   --black: #000;
   --green: #31AE54;
+  --purple: #A6328D;
+  --grey: #9E9E9E;
+  --grey-dark: #6F6F6F;
 
   --arrow-color: #404040;
 
@@ -64,7 +67,7 @@ img {
 }
 
 svg {
-  transition: color var(--transition), fill var(--transition), stroke var(--transition);
+  transition: var(--transition);
 }
 
 ul {

@@ -1,6 +1,6 @@
 <template>
   <div class="preloader">
-    <div class="preloader__icon">
+    <div :style="{width: `${size}px`}" class="preloader__icon">
       <icon name="preloader"/>
     </div>
   </div>
@@ -11,6 +11,9 @@ import { icon } from '../../icons'
 
 export default {
   name: 'preloader',
+  props: {
+    size: Number
+  },
   components: { icon }
 }
 </script>

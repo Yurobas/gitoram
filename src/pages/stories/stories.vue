@@ -5,7 +5,7 @@
           <button class="topline__logo">
             <logo/>
           </button>
-          <button class="topline__close">
+          <button class="topline__close" @click="$router.push('/')">
             <icon name="close"/>
           </button>
         </template>

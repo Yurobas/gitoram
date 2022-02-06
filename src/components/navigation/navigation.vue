@@ -8,11 +8,11 @@
       </li>
       <li class="nav__item --profile">
         <a href="#0" class="nav__link">
-          <img class="nav__image" :src="profile.avatar" alt="User Avatar">
+          <avatar size="mini" :image="avatar_url"/>
         </a>
       </li>
       <li class="nav__item --logout">
-        <a href="#0" class="nav__link">
+        <a href="#0" class="nav__link" @click="$emit('logout')">
           <icon name="logout"/>
         </a>
       </li>
@@ -21,17 +21,18 @@
 </template>
 
 <script>
+import { avatar } from '../../components/avatar'
 import { icon } from '../../icons'
 
 export default {
   name: 'navigation',
   components: {
-    icon
+    icon,
+    avatar
   },
+  emits: ['logout'],
   props: {
-    profile: {
-      type: Object
-    }
+    avatar_url: String
   }
 }
 </script>

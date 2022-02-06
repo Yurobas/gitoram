@@ -2,12 +2,17 @@
   display: flex;
   &:hover {
     & .avatar {
-      border-color: transparent;
+      color: transparent
     }
   }
   &__item {
     &:not(:last-of-type) {
       margin-right: 30px;
+    }
+    &:hover {
+      & .avatar {
+        color: var(--purple)
+      }
     }
   }
 }
