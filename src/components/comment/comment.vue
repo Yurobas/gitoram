@@ -1,7 +1,7 @@
 <template>
   <p class="comment">
     <span class="comment__author">{{ author }}</span>
-    {{ text }}
+    <span class="comment__text">{{ text }}</span>
   </p>
 </template>
 

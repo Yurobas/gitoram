@@ -52,7 +52,7 @@
                 <h2 class="feed__title">{{ name }}</h2>
                 <p class="feed__description">{{ description }}</p>
                 <div class="feed__stats">
-                  <stats :stars="stargazers_count" :forks="forks"/>
+                  <stats :stars="stargazers_count" :forks="forks" @handleStar="handleStar(id)"/>
                 </div>
               </template>
             </feed>
@@ -100,8 +100,13 @@ export default {
       fetchUser: 'user/fetchUser',
       fetchTrendings: 'trendings/fetchTrendings',
       fetchStarred: 'starred/fetchStarred',
-      fetchIssues: 'starred/fetchIssues'
+      fetchIssues: 'starred/fetchIssues',
+      unStarRepo: 'starred/unStarRepo'
     }),
+    handleStar (id) {
+      const isStarred = this.starred.some(item => item.id === id)
+      isStarred ? this.unStarRepo(id) : this.starRepo(id)
+    },
     loadIssues ({ id, owner, repo }) {
       this.fetchIssues({ id, owner, repo })
     },

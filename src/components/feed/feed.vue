@@ -11,8 +11,11 @@
     </div>
     <div class="feed__issues" v-if="shown">
       <contentPlaceholder v-if="loading" :paragraphs="1"/>
-      <ul class="feed__comments">
-        <li class="feed__comment" v-for="item in issues" :key="item.id">
+      <ul class="feed__comments" v-else>
+        <li class="feed__comment" v-if="!issues.length">
+          <comment author="No issues" text=" "/>
+        </li>
+        <li class="feed__comment" v-else v-for="item in issues" :key="item.id">
           <comment :author="item.user.login" :text="item.title"/>
         </li>
       </ul>
@@ -40,7 +43,7 @@ export default {
     userpic: String,
     username: String,
     issues: Array,
-    date: String,
+    date: Date,
     loading: Boolean
   },
   data () {

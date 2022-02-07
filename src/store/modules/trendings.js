@@ -83,7 +83,6 @@ export default {
       })
 
       try {
-        console.log({ owner: owner.login, repo })
         await api.starred.starRepo({ owner: owner.login, repo })
         commit('SET_FOLLOWING', {
           id,
@@ -110,6 +109,7 @@ export default {
     },
     async unStarRepo ({ commit, getters }, id) {
       const { name: repo, owner } = getters.getRepoById(id)
+      
       commit('UNSET_FOLLOWING', {
         id,
         data: {

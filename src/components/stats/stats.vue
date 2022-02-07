@@ -1,7 +1,7 @@
 <template>
   <ul class="stats">
     <li class="stats__item --stars">
-      <button class="stats__block stats__button">
+      <button class="stats__block stats__button" @click="$emit('handleStar')">
         <icon class="stats__icon" name="star"/>
         Star
       </button>
@@ -25,13 +25,14 @@ export default {
   components: {
     icon
   },
+  emits: ['handleStar'],
   props: {
     stars: {
-      type: String || Number,
+      type: Number,
       required: true
     },
     forks: {
-      type: String || Number,
+      type: Number,
       required: true
     }
   }

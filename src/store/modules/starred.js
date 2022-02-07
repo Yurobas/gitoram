@@ -25,7 +25,6 @@ export default {
             loading: false,
             data: payload
           }
-          console.log(item.issues)
         }
         return item
       })
@@ -55,6 +54,18 @@ export default {
         throw e
       } finally {
         currentRepo.issues.loading = false
+      }
+    },
+    async unStarRepo ({ commit, getters }, id) {
+      const { name: repo, owner } = getters.getRepoById(id)
+
+      try {
+        await api.starred.unStarRepo({ owner: owner.login, repo })
+        const { data } = await api.starred.getStarredRepos(10)
+        commit('SET_REPOS', data)
+      } catch (e) {
+        console.error(e)
+        throw e
       }
     }
   }
